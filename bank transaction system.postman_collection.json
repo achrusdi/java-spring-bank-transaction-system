@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "48cdf5cd-ed12-43ef-a026-67dc378cb47b",
+		"name": "bank transaction system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32041595"
+	},
+	"item": [
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "GET role by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/roles/4699efc3-8b99-4c3e-a2f4-e91428d1ec25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"roles",
+								"4699efc3-8b99-4c3e-a2f4-e91428d1ec25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"77288ae8-3331-4db4-827d-7bba6c36043d\",\n    \"name\": \"ndog\",\n    \"description\": \"ndog\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/roles/7fd008f9-86c1-48df-b054-e12d7a1b3720",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"roles",
+								"7fd008f9-86c1-48df-b054-e12d7a1b3720"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"description\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "REGISTER user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"impostor\",\n    \"email\": \"impostor@gmail.com\",\n    \"password\": \"ndog\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/sign-up",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"if (jsonData.data && jsonData.data.token) {",
+									"    pm.collectionVariables.set(\"jwt_token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ndog\",\n    \"password\": \"ndog\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/sign-in",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "GET all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/be44bcd5-f667-4a22-812b-3f5ef741aeb5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"be44bcd5-f667-4a22-812b-3f5ef741aeb5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"general1\",\n    \"email\": \"general1,\",\n    \"password\": \"ndog\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"be44bcd5-f667-4a22-812b-3f5ef741aeb5\",\n    \"email\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/9e414e6d-7be6-47e7-b243-f97cd221bf42",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"9e414e6d-7be6-47e7-b243-f97cd221bf42"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bank account",
+			"item": [
+				{
+					"name": "CREATE bank account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountType\": \"giro\",\n    \"balance\": 2000000,\n    \"accountPin\": 123456\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bank-accounts/807578b0-f233-47fd-991c-07ca0c476e43",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts",
+								"807578b0-f233-47fd-991c-07ca0c476e43"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all bank account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bank-accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET bank account by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bank-accounts/8860a058-f8c4-4ded-ad91-6d0e96da0cd6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts",
+								"8860a058-f8c4-4ded-ad91-6d0e96da0cd6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET bank account by bank account number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bank-accounts/bank-account-number/4829043781805539",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts",
+								"bank-account-number",
+								"4829043781805539"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE bank account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"8860a058-f8c4-4ded-ad91-6d0e96da0cd6\",\n    \"accountType\": \"visa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bank-accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE bank account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bank-accounts/8860a058-f8c4-4ded-ad91-6d0e96da0cd6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bank-accounts",
+								"8860a058-f8c4-4ded-ad91-6d0e96da0cd6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "GET all transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fromAccountNumber\": \"9919948973482290\",\n    \"toAccountNumber\": \"7219238552379585\",\n    \"amount\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions/2d622397-9969-4a6d-b132-04cecd6f736c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"2d622397-9969-4a6d-b132-04cecd6f736c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET transaction by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions/user/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": ""
+		}
+	]
+}
